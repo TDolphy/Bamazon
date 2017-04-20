@@ -48,7 +48,7 @@ var run = function() {
         type: "input",
         message: "How many units would you like to buy?"
       }]).then(function(howmany){
-        if (howmany.units < res[0].stock_quantity) {
+        if (howmany.units <= res[0].stock_quantity) {
           var newAmount = res[0].stock_quantity - howmany.units;
           connection.query("UPDATE products SET ? WHERE ?", [{
             stock_quantity: newAmount
@@ -61,7 +61,7 @@ var run = function() {
         else{
           console.log("Insufficient Quantity!")
         }
-
+        run();
       });
     });
   });
